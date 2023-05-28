@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html xmlns = "https://www.w3.org/1999/xhtml"
+	xmls:th = "https://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	
+<head>
+	<meta charset="UTF-8"/>
+	<title>Teste</title>
+	<link rel= "stylesheet" type= "text/css" href= "/css/bootstrap.min.css">
+	<link rel= "stylesheet" type= "text/css" href= "/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>	
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+        @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+        *
+        {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+            height: auto;
+        }
+        html
+        {
+            scroll-behavior: smooth;
+        }
+        body
+        {
+            min-height: 1000px;
+            background:gray;
+        }
+        header
+        {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgb(0, 0, 0);
+            padding: 40px 100px;
+            z-index: 1000;
+            transition: 0.6s;
+        }
+        header.sticky
+        {
+            padding: 5px 100px;
+            background: rgb(255, 255, 255);
+            border-bottom: 1px solid rgba(0,0,0,.1);  
+            
+        }
+        header .logo
+        {
+            position: relative;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.6s;
+        }
+        header ul
+        {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header ul li
+        {
+            position: relative;
+            list-style: none;
+        }
+        header ul li a
+        {
+            position: relative;
+            margin: 0 15px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: 300;
+            transition: 0.6s;
+        }
+        header.sticky .logo,
+        header.sticky ul li a
+        {
+            color: #000;
+        }
+        .panel
+        {
+            margin-top: 150px;
+            height: auto;
+            width: auto;
+            background-color: rgba(255, 42, 42, 0.329);
+            text-align: center;
+            align-content: center;
+            margin-left: 20px;
+            margin-right: 20px;
+            border-radius: 20px;
+            padding: 10px;
+            padding-bottom: 40px;
+        }
+
+        .table {
+            margin: auto;
+        }
+
+        .table, th, td {
+            border: 1px solid;
+        }
+
+        .table, td {
+            background-color: rgba(255, 72, 72, 0.466);
+        }
+        
+        .modal {
+            left: 45%;
+            right: 50%;
+            position: fixed;
+            font-family: Arial, Helvetica, sans-serif;
+            background: rgba(255, 255, 255, 0.8);
+            z-index: 99999;
+            opacity:0;
+            -webkit-transition: opacity 400ms ease-in;
+            -moz-transition: opacity 400ms ease-in;
+            transition: opacity 400ms ease-in;
+            pointer-events: none;
+            height: auto;
+            width: 250px;
+            padding-left: 20px;
+            padding-right: 20px;
+            border-radius: 20px;
+        }
+
+        .modal:target {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal .excluir {
+            background-color: red;
+            color: black;
+            padding: 4px;
+            border-radius: 6px;
+            border: none;
+            margin: 8px;
+            transition: background-color 2s, transform 2s, color 2s;
+        }
+
+        .modal .excluir:hover {
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            padding: 4px;
+            border-radius: 6px;
+            border: none;
+            margin: 8px;
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+
+        .modal .cancelar {
+            background-color: rgb(161, 161, 161);
+            color: black;
+            padding: 4px;
+            border-radius: 6px;
+            border: none;
+            transition: background-color 2s, transform 2s, color 2s;
+        }
+
+        .modal .cancelar .link {
+            color: rgb(0, 0, 0);
+            text-decoration:none
+        }
+
+        .modal .cancelar:hover {
+            background-color: rgb(0, 0, 0);
+            color: rgb(255, 255, 255);
+            padding: 4px;
+            border-radius: 6px;
+            border: none;
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+
+        .modal .cancelar:hover .link {
+            color: rgb(255, 255, 255);
+            text-decoration:none
+        }
+
+        .fechar {
+            position: absolute;
+            width: 30px;
+            right: 0px;
+            top: 0px;
+            text-align: center;
+            line-height: 30px;
+            margin-top: 5px;
+            border-radius: 50%;
+            font-size: 16px;
+            color: #8d0000;
+            text-decoration: none;
+        }
+        
+        .divModal {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .cdJogoH5 {
+            margin-left: 6px;
+            color: #8d0000;
+        }
+
+        .div_Comandos a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <a href="#" class="logo">AuroraWebGames</a>
+        <ul>
+            <li><a href="/aurora/jogos/inicio">HOME</a></li>
+            <li><a href="/aurora/jogos/listar">LISTAR JOGOS</a></li>
+            <li><a href="/aurora/jogos/cadastrar">CADASTRAR JOGOS</a></li>
+            <li><a href="/aurora/jogos/categoria/listar">LISTAR CATEGORIAS</a></li>
+            <li><a href="/aurora/jogos/categoria/cadastrar">CADASTRAR CATEGORIAS</a></li>
+        </ul> 
+    </header>
+    <section>
+        <div class="panel">
+            <table class="table" id="table">
+                <h1>Categorias Cadastrados</h1>
+                <thead>
+                    <tr>
+                        <th class= "text-center col-md-2">Codigo</th >
+                        <th class= "text-center col-md-2">Categoria</th >
+                        <th class= "col-md-2">Comandos</th >
+                    </tr>  
+                </thead>
+                <tbody>
+                    <tr th:each="categoria : ${CategoriasAurora}">
+                        <td class="text-center" th:text="${categoria.cdCat}"></td >
+                        <td class="text-center" th:text="${categoria.teste}"></td >
+                        <td>
+                            <div class="div_Comandos">
+                                <a class="btn btn-link btn-xs" th:href="@{/aurora/jogos/categoria/editar/{cdCat}(cdCat=${categoria.cdCat})}"
+                                title="Editar" rel="tooltip" data-placement="bottom">
+                                    <span class="bi bi-pencil"> Editar</span>
+                                </a  >
+                                <br>
+                                <a class="btn btn-link btn-xs" th:href="@{/aurora/jogos/categoria/deletar/(cdCat=${categoria.cdCat})}"
+                                onclick="alertaExcluiCat()" title="Excluir" rel="tooltip" data-placement="bottom">
+                                    <span class="bi bi-trash"> Excluir</span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr >
+                </tbody>
+            </table >
+    </section>	
+</body>
+<script>
+    window.addEventListener("scroll", function(){
+        var header = document.querySelector("header");
+        header.classList.toggle("sticky", window.scrollY > 0)
+    });
+    
+    function alertaExcluiCat() {
+        alert("Categoria excluida!");
+    }
+    const imgTXT = document.getElementById("jogosImg")
+    const imgAttr = imgTXT.textContent
+    
+    console.log(imgAttr)
+
+</script> 
+<script src="/js/jquery-3.6.0.min.js" ></script >
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+
+</html>
